@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 const router = express.Router();
 
-// const accountSid = "AC142fc44869b899d213595efc3506423a";
+const accountSid = "AC142fc44869b899d213595efc3506423a";
 const authToken = "18fd4e04f4f942a98a17ed1bc2214307";
 const client = require("twilio")(accountSid, authToken);
 
