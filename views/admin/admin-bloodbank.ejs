@@ -1,0 +1,147 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Admin | Blood Banks </title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/assets/css/slicknav.css">
+	<link rel="stylesheet" href="/assets/css/animate.min.css">
+	<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="/assets/css/themify-icons.css">
+	<link rel="stylesheet" href="/assets/css/slick.css">
+	<link rel="stylesheet" href="/assets/css/nice-select.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<!-- special file -->
+	<link rel="stylesheet" href="/assets/css/login-form.css">
+	<link rel="stylesheet" href="/assets/css/request-style.css">
+</head>
+
+<body>
+	<!-- Preloader Start -->
+	<div id="preloader-active">
+		<div class="preloader d-flex align-items-center justify-content-center">
+			<div class="preloader-inner position-relative">
+				<div class="preloader-circle"></div>
+				<div class="preloader-img pere-text">
+					<img src="/assets/img/logo/loder.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Preloader Start -->
+	<header>
+	</header>
+	<main>
+		<section id="history" class="d-flex align-items-center mt-50 mb-50">
+			<div class="container display-logged-in ">
+				<div class="section-tittle">
+					<h2 class="row d-flex justify-content-center mb-50">Blood Banks</h2>
+				</div>
+				<div class="mini-nav">
+					<div class="container">
+						<div class="row justify-content-start">
+							<p class="col-xs-3 mr-150">&#10227;</p>
+							<p class="col-xs-3 mr-150">Total BloodBanks :<%=banks.length%></p>
+							<p class="col-xs-3 mr-150"><a href="/admin/add-bloodbank.html" target="_blank" class="btn-link">Add New Blood bank</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="scroll-box" id="print-multi">
+					<script src="/assets/js/bloodbank-editor.js"></script>
+					<%for(var i=0;i < banks.length ; i++){%>
+							<table class="table blood-bank-table record">
+								<tr>
+									<td class="bold">Blood Bank Name</td>
+									<td colspan="2"><input type="text" size="50" placeholder="Blood bank name" value="<%=banks[i].branch_name%>"  required disabled class="editable<%=i%>"></td>
+									<td>Contact Number : <input type="text" size="18" placeholder="Contact Number" value="+915161561515" required disabled class="editable<%=i%>"></td>
+								</tr>
+								<tr>
+									<td>Location</td>
+									<td colspan="3"><input type="text" size="90" placeholder="location" value="location" required disabled class="editable<%=i%>"></td>
+								</tr>
+								<tr>
+									<td>A+ : </td>
+									<td>AB+ : </td>
+									<td>B+ : </td>
+									<td>O+ : </td>
+								</tr>
+								<tr>
+									<td>A- : </td>
+									<td>AB- : </td>
+									<td>B- : </td>
+									<td>O- : </td>
+								</tr>
+								<tr>
+									<td>Total-Available : </td>
+									<td>Total-Supplied : </td>
+									<td>Total-Rejected :</td>
+									<td><a href="/admin/admin-bloodbag.html/<%=banks[i].BLID%>" target="_blank">link to bloodbags</a></td>
+								</tr>
+								<tr id="toggle-record<%=i%>">
+									<td colspan="2"><button type="button" onclick="update_btn(<%=i%>)" class="genric-btn info btn-update">Update</button></td>
+		              <td><button type="button" onclick="delete_btn(<%=i%>)" class="genric-btn danger btn-delete">Delete</button></td>
+									<td>
+										<button type="button" onclick="edit_btn(<%=i%>)" class="genric-btn info circle btn-edit">Edit</button>
+										<button type="button" onclick="cancel_btn(<%=i%>)" class="genric-btn info btn-cancel">Cancel</button>
+									</td>
+								</tr>
+							</table>
+
+			 		<%}%>
+				<script>hide_all_btn(<%=banks.length%>); </script>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+	</footer>
+
+	<!-- JS here -->
+
+	<!-- header and footer include -->
+	<script src="/assets/js/header-admin.txt" language="javascript" type="text/javascript"></script>
+	<script src="/assets/js/footer-admin.txt" language="javascript" type="text/javascript"></script>
+
+
+	<!-- All JS Custom Plugins Link Here here -->
+	<script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+	<!-- Jquery, Popper, Bootstrap -->
+	<script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="/assets/js/popper.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<!-- Jquery Mobile Menu -->
+	<script src="/assets/js/jquery.slicknav.min.js"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+	<script src="/assets/js/owl.carousel.min.js"></script>
+	<script src="/assets/js/slick.min.js"></script>
+	<!-- One Page, Animated-HeadLin -->
+	<script src="/assets/js/wow.min.js"></script>
+	<script src="/assets/js/animated.headline.js"></script>
+	<script src="/assets/js/jquery.magnific-popup.js"></script>
+
+	<!-- Nice-select, sticky -->
+	<script src="/assets/js/jquery.nice-select.min.js"></script>
+	<script src="/assets/js/jquery.sticky.js"></script>
+
+	<!-- contact js -->
+	<script src="/assets/js/contact.js"></script>
+	<script src="/assets/js/jquery.form.js"></script>
+	<script src="/assets/js/jquery.validate.min.js"></script>
+	<script src="/assets/js/mail-script.js"></script>
+	<script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+
+	<!-- Jquery Plugins, main Jquery -->
+	<script src="/assets/js/plugins.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+</body>
+</html>

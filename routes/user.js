@@ -1,0 +1,256 @@
+//All backend related to Users
+//Basic NodejS setup
+const express = require("express");
+const mysql = require("mysql");
+const app = express();
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const db = require("../config/db.js");
+
+// Validator
+const { check, validationResult } = require("express-validator");
+
+const PORT = process.env.PORT;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+const router = express.Router();
+
+const accountSid = "AC142fc44869b899d213595efc3506423a";
+const authToken = "18fd4e04f4f942a98a17ed1bc2214307";
+const client = require("twilio")(accountSid, authToken);
+
+//For Encryption
+const bcrypt = require("bcryptjs");
+
+//To Check if user already exists
+const checkIfUserExists = require("./middleware/checkIfUserExists.js");
+// const checkIfRegister = require("./middleware/loginMiddleware");
+//Handle Registering Users
+//POST user/signup
+
+var nodemailer = require("nodemailer");
+
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "2019284@iiitdmj.ac.in",
+    pass: "mani284%&",
+  },
+});
+
+router.post(
+  "/signup",
+  [
+    checkIfUserExists,
+    check("name", "Please Enter Name").not().isEmpty(),
+    check("email", "Please eneter a valid email").isEmail(),
+    // password must be at least 5 chars long
+    check("password", "Enter pass of atleast  length of 6").isLength({
+      min: 6,
+    }),
+    check("gender", "Please Enter gender").not().isEmpty(),
+    check("dob", "Please Enter dob").not().isEmpty(),
+    check("phone", "Please Enter phone").not().isEmpty(),
+    check("blood_type", "Please Enter blood_type").not().isEmpty(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.redirect("/user/signup");
+    } else {
+      var users = {
+        full_name: req.body.name,
+        blood_group: req.body.blood_type,
+        DOB: req.body.dob,
+        phone_number: req.body.phone,
+        email: req.body.email,
+        password: req.body.password,
+        verified: 0,
+        gender: req.body.gender,
+        user_type: req.body.user_type,
+      };
+      console.log(users);
+
+      const salt = await bcrypt.genSalt(10);
+      users.password = await bcrypt.hash(req.body.password, salt);
+      msg = "";
+      {
+        await db.query(
+          "INSERT INTO people SET ?",
+          users,
+          function (error, results, fields) {
+            if (error) {
+              console.log(error);
+              res.redirect("/");
+            } else {
+              req.session.email = users.email;
+              res.redirect("/user/otp");
+            }
+          }
+        );
+      }
+    }
+  }
+);
+
+router.get("/otp", async (req, res) => {
+  var otp = Math.floor(100000 + Math.random() * 900000);
+  req.session.otp = otp;
+  var mailOptions = {
+    from: "2019284@iiitdmj.ac.in",
+    to: req.session.email,
+    subject: "OTP",
+    text: req.session.otp.toString(),
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+      res.render("otp");
+    }
+  });
+});
+
+router.post("/otp", async (req, res) => {
+  if (req.body.otp == req.session.otp) {
+    await db.query(
+      "UPDATE people SET verified = ? WHERE email = ?",
+      [1, req.session.email],
+      async (error, result, fields) => {
+        if (error) {
+          console.log(error);
+          res.redirect("/");
+        } else {
+          res.redirect("/user/login");
+        }
+      }
+    );
+  } else {
+    res.redirect("/user/otp");
+  }
+});
+var wrong = false;
+router.get("/login", function (req, res) {
+  res.render("forms/login", { wrong: wrong });
+});
+
+router.get("/login-redirect", async (req, res) => {
+  var today = new Date();
+  await db.query(
+    "SELECT * FROM Blood_donation_camp WHERE camp_start<= ? AND camp_end >= ?",
+    [today, today],
+    function (error, result, fields) {
+      if (error) {
+        console.log(error);
+        res.send("error");
+      } else {
+        res.render("forms/login-redirect", {
+          wrong: wrong,
+          user_type: req.session.user_type,
+          camps: result,
+        });
+      }
+    }
+  );
+});
+
+router.post("/login-redirect", async (req, res) => {
+  var bdcid = req.body.user_location;
+  req.session.bdcid = bdcid;
+  res.redirect("/data-entry");
+});
+
+router.get("/signup", function (req, res) {
+  res.render("forms/signup", { registered: req.session.reg });
+});
+
+//Handle POST user Login
+
+router.post(
+  "/login",
+  [
+    check("email", "Please eneter a valid email").isEmail(),
+    // password must be at least 5 chars long
+    check("password", "Enter pass of atleast  length of 6").isLength({
+      min: 6,
+    }),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.redirect("/user/signup");
+    } else {
+      await db.query(
+        "SELECT * FROM people WHERE email = ?",
+        req.body.email,
+        async (error, result, fields) => {
+          if (result.length == 0) {
+            wrong = true;
+            res.redirect("/user/login");
+          }
+          var isMatch = await bcrypt.compare(
+            req.body.password,
+            result[0].password
+          );
+
+          if (isMatch) {
+            isLogged = true;
+            req.session.name = result[0].full_name;
+            req.session.user = result[0].PID;
+            req.session.admin = true;
+            req.session.user_type = result[0].user_type;
+            req.session.blood = result[0].blood_group;
+            req.session.phone = result[0].phone_number;
+            req.session.otp = result[0].verified;
+            wrong = false;
+            res.redirect("/user/login-redirect");
+          } else {
+            wrong = true;
+            res.redirect("/user/login");
+          }
+        }
+      );
+    }
+  }
+);
+
+router.post("/update/profile", async (req, res) => {
+  await db.query(
+    "SELECT * FROM people WHERE email = ?",
+    req.body.email,
+    async (error, result, fields) => {
+      if (result.length == 0) {
+        wrong = true;
+        res.redirect("/user/login");
+      }
+      var isMatch = await bcrypt.compare(req.body.password, result[0].password);
+      if (isMatch) {
+        await db.query(
+          "UPDATE people SET full_name = ? , phone_number = ? , email = ? WHERE PID = ?",
+          [req.body.name, req.body.phone, req.body.email, req.session.user],
+          async (error, result, fields) => {
+            if (error) {
+              console.log(error);
+              res.redirect("/");
+            } else {
+              res.redirect("/forms/profile.html");
+            }
+          }
+        );
+      } else {
+        res.send("Wrong password");
+      }
+    }
+  );
+});
+
+router.get("/logout", function (req, res) {
+  req.session.admin = false;
+  res.redirect("/user/login");
+});
+module.exports = router;
+
+// var isMatch = await bcrypt.compare(password, user.password);

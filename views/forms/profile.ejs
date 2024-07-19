@@ -1,0 +1,472 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	 <title>Profile</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 	<!-- CSS here -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="../assets/css/slicknav.css">
+		<link rel="stylesheet" href="../assets/css/animate.min.css">
+		<link rel="stylesheet" href="../assets/css/magnific-popup.css">
+		<link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
+		<link rel="stylesheet" href="../assets/css/themify-icons.css">
+		<link rel="stylesheet" href="../assets/css/slick.css">
+		<link rel="stylesheet" href="../assets/css/nice-select.css">
+		<link rel="stylesheet" href="../assets/css/style.css">
+    <!-- special file -->
+    <link rel="stylesheet" href="../assets/css/login-form.css">
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="../assets/img/logo/loder.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+		<header>
+		    <!-- Header Start -->
+		    <div class="header-area">
+		        <div class="main-header ">
+		            <div class="header-top d-none d-lg-block">
+		                <div class="container">
+		                    <div class="col-xl-12">
+		                        <div class="row d-flex justify-content-between align-items-center">
+		                            <div class="header-info-left">
+		                                <ul>
+		                                    <li>Phone: +99 (0) 101 0000 888</li>
+		                                    <li>Email: noreply@yourdomain.com</li>
+		                                </ul>
+		                            </div>
+		                            <div class="header-info-right">
+		                                <ul class="header-social">
+		                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+		                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+		                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="header-bottom  header-sticky">
+		                <div class="container">
+		                    <div class="row align-items-center">
+		                        <!-- Logo -->
+		                        <div class="col-xl-2 col-lg-2">
+		                            <div class="logo">
+		                                <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+		                            </div>
+		                        </div>
+		                        <div class="col-xl-10 col-lg-10">
+		                            <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+		                                <!-- Main-menu -->
+		                                <div class="main-menu d-none d-lg-block">
+		                                    <nav>
+		                                        <ul id="navigation">
+		                                            <li><a href="../index.html">Home</a></li>
+		                                            <!-- <li><a href="services.html">Services</a></li> -->
+		                                            <li><a href="profile.html">Profile</a>
+		                                                <ul class="submenu">
+		                                                    <li><a href="profile.html#donar-card">Donar ID-Card</a>
+		                                                    </li>
+		                                                    <li><a href="profile.html#profile-details">Profile
+		                                                            Details</a></li>
+		                                                    <li><a href="profile.html#history">Previous
+		                                                            Donations/Requests</a></li>
+		                                                </ul>
+		                                            </li>
+		                                            <li><a href="../donate_now.html#camp_map">Donation Camps</a></li>
+		                                            <li><a href="../about.html">About Us</a></li>
+		                                            <li><a href="../contact.html">Contact Us</a></li>
+		                                            <li><a href="/user/signup">Sign Up</a></li>
+		                                        </ul>
+		                                    </nav>
+		                                </div>
+		                                <!-- Header-btn -->
+		                                <div class="header-right-btn d-none d-lg-block ml-20">
+		                                    <%if(!logged){%>
+		                                    <a href="/user/login" class="btn header-btn">Login</a>
+		                                    <%}else{%>
+		                                        <a href="/user/logout" class="btn header-btn">Logout</a>
+		                                        <%}%>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <!-- Mobile Menu -->
+		                        <div class="col-12">
+		                            <div class="mobile_menu d-block d-lg-none"></div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		    <!-- Header End -->
+		</header>
+	<main>
+    <section id="donor-card" class="login-form-area section-bg  pt-115 pb-120 fix">
+      <!-- LOGGED OUT show this container if user is logged out  -->
+      <div class="container mb-50">
+        <div class="display-logged-out">
+          <div class="row d-flex justify-content-center mt-30">
+            <h3>LogIn / SignUp to see your Donor Card.</h3>
+          </div>
+          <div class="row d-flex justify-content-center">
+
+            <div class="col-xs-6 mr-20">
+                <a class="btn-don-req" href="forms/login.html"> Log In </a>
+            </div>
+            <div class="col-xs-6 ml-20">
+                <a class="btn-don-req" href="forms/signup.html"> Sign Up </a>
+            </div>
+          </div>
+        </div>
+        <!-- LOGGED OUT container End -->
+        <!-- LOGGED IN show this container if user id logged in -->
+        <div class="display-logged-in">
+          <div class="row d-flex justify-content-center mt-30">
+            <h3>Donor Card</h3>
+          </div>
+	  <div class="row d-flex justify-content-center">
+	    <!-- Display Donor Card -->
+	    <!-- <img src="..\assets\img\donor-id-card.png" style="height:auto;width:90%;max-width:500px;"> -->
+	  </div>
+        </div>
+      </div>
+      <!-- LOGGED IN container End -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- login wrapper -->
+                <div class="col-xl-8 col-lg-9">
+                    <div class="login-form-wrapper">
+                        <!-- From title -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- Section Tittle -->
+                                <div class="section-tittle mb-50">
+                                    <h2 id="profile-details">Profile</h2>
+                                    <p class="display-logged-out">LogIn / SignUp to see your Profile.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form -->
+                        <form action="/user/update/profile" method="post" class="display-logged-in login-form">
+                            <div class="row ">
+                                <div class="col-lg-12">
+                                    <div class="input-form">
+                                        <input type="text" name="name" value="<%=info.name%>" placeholder="Full Name (required)" pattern="^[a-zA-Z]+(\s[a-zA-Z]+)?$" title="Name only contains Alphabets and blank space" autocomplete="name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-12">
+                                    <div class="input-form">
+                                        <input type="text" name="phone" value="<%=info.phone%>" placeholder="Phone Number (required)" pattern="[1-9]{1}[0-9]{9}" title="Must contain 10 digits 0-9 , first digit can't be 0" autocomplete="tel-local" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-form">
+                                        <input type="email" name="email" placeholder="Email (we will send you a donar card)" autocomplete="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-12">
+                                  <div class="input-form">
+                                      <input type="password" name="password" placeholder="Password(required)" autocomplete="new-password" required>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <!-- Button -->
+                                <div class="container">
+                                  <div class="row justify-content-center">
+                                      <div class="col-lg-4 col-md-12 col-xs-12">
+                                          <button type="submit" class="btn header-btn">Update Profile</button>
+                                      </div>
+                                  </div>
+                                </div>
+                                <!-- Button-End -->
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- <section class="login-form-area section-bg fix mb-150 display-logged-in">
+                  <div class="container">
+                    <div class="row justify-content-center">
+                      <div class="col-xl-8 col-lg-9">
+                        <div class="login-form-wrapper">
+                          <div class="row">
+                              <div class="col-lg-12">
+
+                                  <div class="section-tittle mb-50">
+                                      <h2>Change Password</h2>
+                                  </div>
+                              </div>
+                          </div>
+                          <form class="display-logged-in login-form" name="change-password" action="/reset/password" method="post">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <div class="input-form">
+                                        <input type="password" placeholder="Current Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-form">
+                                        <input type="password" placeholder="New Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-form">
+                                        <input type="password" placeholder="Confirm New Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="container">
+                                  <div class="row justify-content-center">
+                                      <div class="col-lg-4 col-md-12 col-xs-12">
+                                          <button type="submit" class="btn header-btn">Update Password</button>
+                                      </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Previous Donations/Requests  -->
+    <section id="history" class="d-flex align-items-center mb-50">
+
+        <div class="container display-logged-in ">
+            <h2 class="row d-flex justify-content-center mb-50">Your Previous Donations / Requests</h2>
+       <!-- display all donations and request using javascript -->
+             <div class="scroll-box">
+                <!-- start displaying records -->
+								<%for(var i=0;i<donations.length;i++){%>
+                <div class="record">
+                    <div class="container">
+                         <!-- type of record -->
+                        <h4 class="row justify-content-start">Donation</h4>
+
+                        <div class="row justify-content-between">
+                                <p class="col-xs-6">Donated On : <%=donations[i].donation_date%> </p>
+                                <p class="col-xs-6"> Amount-Donated : </p>
+                        </div>
+                        <div class="row justify-content-between">
+                                <p class="col-xs-4">Blood-Test-X : <%=donations[i].blood_test1%> </p>
+                                <p class="col-xs-4">Blood-Test-Y : <%=donations[i].blood_test2%></p>
+                                <p class="col-xs-4">Blood-Test-Z : <%=donations[i].blood_test3%></p>
+                        </div>
+                        <div class="row justify-content-between">
+                                <p class="col-xs-4">Location : </p>
+                        </div>
+                    </div>
+                </div>
+								<%}%>
+
+								<%for(var i=0;i<requests.length;i++){%>
+                <div class="record">
+                    <div class="container">
+                         <!-- type of record -->
+                        <h4 class="row justify-content-start">Request</h4>
+                        <div class="row justify-content-between">
+                                <p class="col-xs-6">Requested On : <%=requests[i].request_date%></p>
+                                <p class="col-xs-6"> Amount-Requested : <%=requests[i].quantity%></p>
+                        </div>
+                        <div class="row justify-content-between">
+                                <p class="col-xs-4">Receiver's Blood Type : <%=requests[i].blood_group%></p>
+                                <p class="col-xs-4">Receiver's Name : <%=info.name%></p>
+                                <p class="col-xs-4">Status : <%=requests[i].accepted%></p>
+                        </div>
+                        <div class="row justify-content-between">
+                                <p class="col-xs-4">Amount-Recivied : </p>
+                        </div>
+                    </div>
+                </div>
+								<%}%>
+                <!-- All records ends here -->
+          </div>
+        </div>
+    </section>
+<!-- END Previous Donations/Requests -->
+    </main>
+
+
+
+
+
+
+		<footer>
+		  <!--? Footer Start-->
+		<div class="footer-area footer-bg">
+		    <div class="container">
+		        <div class="footer-top footer-padding">
+		            <!-- footer Heading -->
+		            <div class="footer-heading">
+		                <div class="row justify-content-between">
+		                    <div class="col-xl-6 col-lg-8 col-md-8">
+		                        <div class="wantToWork-caption wantToWork-caption2">
+		                            <h2>Be a Blood Donor, Be a Hero!<br>A Real One!</h2>
+		                        </div>
+		                    </div>
+		                    <div class="col-xl-3 col-lg-4">
+		                        <span class="contact-number f-right">+91 985 683 9756</span>
+		                    </div>
+		                </div>
+		            </div>
+		            <!-- Footer Menu -->
+		            <div class="row d-flex justify-content-between">
+		                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+		                    <div class="single-footer-caption mb-50">
+		                        <div class="footer-tittle">
+		                            <h4>QUICK LINKS</h4>
+		                            <ul>
+		                                <li><a href="about.html">About Us</a></li>
+		                                <li><a href="donate_now.html#camp_map">Donation Camps</a></li>
+		                                <li><a href="contact.html">Contact us</a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4">
+		                    <div class="single-footer-caption mb-50">
+		                        <div class="footer-tittle">
+		                            <h4>GET ENGAGED</h4>
+		                            <ul>
+		                                <li><a href="donate_now.html">As a Donor</a></li>
+		                                <li><a href="request_now.html">As a Reciever</a></li>
+		                                <li><a href="#">As a Volunteer</a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+		                    <div class="single-footer-caption mb-50">
+		                        <div class="footer-tittle">
+		                            <h4>GET IN TOUCH</h4>
+		                            <ul>
+		                                <li><a href="contact.html">Address:Maharshi Dayanand Saraswati Chowk, Napier Town, Jabalpur, Madhya Pradesh 482002</a></li>
+		                                <li><a href="contact.html">Phone: 999-999-9999</a></li>
+		                                <li><a href="contact.html">Email: noreply@your-domain.com</a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6">
+		                    <div class="single-footer-caption mb-50">
+		                        <!-- logo -->
+		                        <div class="footer-logo">
+		                            <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+		                        </div>
+		                        <div class="footer-tittle">
+		                            <div class="footer-pera">
+		                                <p class="info1">Every Drop Counts! Your One good step can save a thousand lives! Donate Blood Now!</p>
+		                            </div>
+		                        </div>
+		                        <!-- Footer Social -->
+		                        <div class="footer-social ">
+		                            <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+		                            <a href=""><i class="fab fa-twitter"></i></a>
+		                            <a href="#"><i class="fas fa-globe"></i></a>
+		                            <a href="#"><i class="fab fa-instagram"></i></a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <!-- Footer Bottom -->
+		        <div class="footer-bottom">
+		            <div class="row d-flex align-items-center">
+		                <div class="col-lg-12">
+		                    <div class="footer-copy-right text-center">
+		                        <p><!-- Link back to IIITDM Jabalpur can't be removed. Template is licensed under CC BY 3.0. -->
+		Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made  by talented students of <a href="https://www.iiitdmj.ac.in" target="_blank">IIITDM Jabalpur</a>
+		<!-- Link back to IIIT Jabalpur can't be removed. Template is licensed under CC BY 1.0. --></p>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		</footer>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+
+<!-- JS here -->
+<script>
+		if(true){ //condition is true if user is logged in
+					//turn off all the div for logged-out
+					var ele = document.getElementsByClassName("display-logged-out");
+					for(var i = 0;i < ele.length;i++){
+						ele[i].style.display = "none";
+					}
+		}
+		else{
+				//turn off all the div for logged-in
+				var ele = document.getElementsByClassName("display-logged-in");
+				for(var i = 0;i < ele.length;i++){
+					ele[i].style.display = "none";
+				}
+		}
+</script>
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="../assets/js/popper.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="../assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="../assets/js/owl.carousel.min.js"></script>
+        <script src="../assets/js/slick.min.js"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="../assets/js/wow.min.js"></script>
+		<script src="../assets/js/animated.headline.js"></script>
+		<script src="../assets/js/jquery.magnific-popup.js"></script>
+
+		<!-- Nice-select, sticky -->
+        <script src="../assets/js/jquery.nice-select.min.js"></script>
+		<script src="../assets/js/jquery.sticky.js"></script>
+
+        <!-- contact js -->
+        <script src="../assets/js/contact.js"></script>
+        <script src="../assets/js/jquery.form.js"></script>
+        <script src="../assets/js/jquery.validate.min.js"></script>
+        <script src="../assets/js/mail-script.js"></script>
+        <script src="../assets/js/jquery.ajaxchimp.min.js"></script>
+
+		<!-- Jquery Plugins, main Jquery -->
+        <script src="../assets/js/plugins.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
